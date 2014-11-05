@@ -1,20 +1,15 @@
-var app;
-app = angular.module("superhero", []).
-    directive("enter", function () {
-        return function (scope, element, attr) {
-            element.bind("mouseenter", function () {
-                element.addClass(attr.enter);
-            })
-        }
-    })
-    .directive("leave", function () {
-        return {
-            restrict : "A",
-            link: function (scope, element,attr) {
-                element.bind("mouseleave", function () {
-                    element.removeClass(attr.leave);
-                });
-            }
-        }
-
-    });
+var app = angular.module('twitterApp', []);
+app.controller("AppCtrl", function($scope){
+    $scope.loadMoreTweets = function(){
+        alert("Laoding tweets");
+    }
+    $scope.deleteTweets = function(){
+        alert("deleting");
+    }
+}).directive("enter", function(){
+    return function(scope, element, attrs){
+        element.bind("mouseenter", function(){
+            scope.$apply(attrs.enter);
+        })
+    }
+});
