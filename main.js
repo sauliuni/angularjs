@@ -19,7 +19,11 @@ app.controller("AppCtrl", function($scope){
             title : "drei",
             text: "Hallo drei"
         }];
-}).directive("superhero", function(){
+    $scope.format = 'M/d/yy h:mm:ss a';
+}).controller("timeDate", function($scope){
+    $scope.format = 'M/d/yy h:mm:ss a';
+})
+    .directive("superhero", function(){
     return {
         restrict : "E",
         scope:{},
@@ -95,4 +99,29 @@ app.controller("AppCtrl", function($scope){
                 }
             }
         }
-    });
+    })
+    .directive("currentTime", ['$interval', 'dateFilter',function(interval, dateFilter){
+        return{
+            link: function(scope, element, attr) {
+                var format, timeoutId;
+                console.log("init current time");
+                function updateTime() {
+                    element.text(dateFilter(new Date(), format));
+                }
+
+                scope.$watch(attr.currentTime, function (value) {
+                    format = value;
+                    updateTime();
+                });
+
+                element.on('$destroy', function () {
+                    $interval.cancel(timeoutId);
+                });
+
+                interval(function () {
+                    updateTime();
+                }, 1000);
+            }
+
+        }
+    }]);

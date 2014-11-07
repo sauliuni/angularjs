@@ -13,11 +13,18 @@
         <accordion ng-repeat = "expander in expanders">
             <div show-details details-title="{{expander.title}}">{{expander.text}}</div>
         </accordion>
+
+        <div >Test</div>
+        <!--<div ng-controller="timeDate">-->
+        Format: <input ng-model="format"/>
+        Current date:<div current-time="format">{{time}}</div>
+        <!--</div>-->
     </div>
     <superhero >Hallo</superhero>
     <superhero >Zwei
     <div speed>Test here</div></superhero>
-    <div >Test</div>
+
+
 
 </div>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.1/angular.min.js"></script>
