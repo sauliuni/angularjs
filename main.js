@@ -20,6 +20,10 @@ app.controller("AppCtrl", function($scope){
             text: "Hallo drei"
         }];
     $scope.format = 'M/d/yy h:mm:ss a';
+    $scope.choreDone = function(chore){
+        alert(chore + "ist done!");
+        console.log(chore + "ist done");
+    }
 }).controller("timeDate", function($scope){
     $scope.format = 'M/d/yy h:mm:ss a';
 })
@@ -124,4 +128,13 @@ app.controller("AppCtrl", function($scope){
             }
 
         }
-    }]);
+    }])
+    .directive("kid", function () {
+        return {
+            restrict:"E",
+            scope: {
+                done : "&"
+            },
+            template: '<input type ="text" ng-model="chore"><div>{{chore}} <button ng-click="done({chore:chore})">OK im done</button></div>'
+        }
+    });
