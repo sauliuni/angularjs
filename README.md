@@ -1,4 +1,4 @@
 angularjs
 =========
 
-The interface with angularness
+My code sniplets of angular so i can recap stuff
